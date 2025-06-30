@@ -1,2 +1,3 @@
 # pinguin-pendu
-simple pendu
+
+simple hangman game, with API management for the riddle.
