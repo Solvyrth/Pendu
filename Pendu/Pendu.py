@@ -13,74 +13,117 @@ print(r'''
 `---'        `'-..-'  '--'    '--''-----'`      ``-'`-'' 
                     Coder par Solvyrth
                 https://github.com/Solvyrth
-                        Version 1.0
+                        Version 1.1
               
                                                           
 ''')
 
-COCHON_PENDU_STAGES = [
+PENDU_STAGES = [
     [
-        "   _____   ",
-        "  (     )  ",
-        "  ( o o )  ",
-        "  /  V  \\  ",
-        " /(     )\\ ",
-        "  ^^   ^^  "
+        "           ",
+        "           ",
+        "           ",
+        "           ",
+        "           ",
+        "           ",
+        "____       "
     ],
     [
-        "   _____   ",
-        "  (     )  ",
-        "  ( o o )  ",
-        "  /  V  \\  ",
-        " /(     )\\ ",
-        "  ^^   ^   "
+        "           ",
+        " |         ",
+        " |         ",
+        " |         ",
+        " |         ",
+        " |         ",
+        "_|___      "
     ],
     [
-        "   _____   ",
-        "  (     )  ",
-        "  ( o o )  ",
-        "  /  V  \\  ",
-        " /(     )\\ ",
-        "  ^    ^   "
+        "  ______   ",
+        " |/        ",
+        " |         ",
+        " |         ",
+        " |         ",
+        " |         ",
+        "_|___      "
     ],
     [
-        "   _____   ",
-        "  (     )  ",
-        "  ( o o )  ",
-        "  /  V  \\  ",
-        " /(     )\\ ",
-        "       ^   "
+        "  ______   ",
+        " |/     |  ",
+        " |         ",
+        " |         ",
+        " |         ",
+        " |         ",
+        "_|___      "
     ],
     [
-        "   _____   ",
-        "  (     )  ",
-        "  ( o o )  ",
-        "  /  V  \\  ",
-        " /(     )\\ ",
-        "           "
+        "  ______   ",
+        " |/     |  ",
+        " |      |  ",
+        " |         ",
+        " |         ",
+        " |         ",
+        "_|___      "
     ],
     [
-        "   _____   ",
-        "  (     )  ",
-        "  ( x x )  ",
-        "  /  V  \\  ",
-        " /(     )\\ ",
-        "           "
+        "  ______   ",
+        " |/     |  ",
+        " |      |  ",
+        " |      O  ",
+        " |         ",
+        " |         ",
+        "_|___      "
     ],
     [
-        "   _____   ",
-        "  (     )  ",
-        "  ( x x )  ",
-        "  /  V  \\  ",
-        " /(     )\\ ",
-        "  //   \\  "
+        "  ______   ",
+        " |/     |  ",
+        " |      |  ",
+        " |      O  ",
+        " |      |  ",
+        " |         ",
+        "_|___      "
+    ],
+    [
+        "  ______   ",
+        " |/     |  ",
+        " |      |  ",
+        " |      O  ",
+        " |     /|  ",
+        " |         ",
+        "_|___      "
+    ],
+    [
+        "  ______   ",
+        " |/     |  ",
+        " |      |  ",
+        " |      O  ",
+        " |     /|\\ ",
+        " |         ",
+        "_|___      "
+    ],
+    [
+        "  ______   ",
+        " |/     |  ",
+        " |      |  ",
+        " |      O  ",
+        " |     /|\\ ",
+        " |     /   ",
+        "_|___      "
+    ],
+    [
+        "  ______   ",
+        " |/     |  ",
+        " |      |  ",
+        " |      O  ",
+        " |     /|\\ ",
+        " |     / \\ ",
+        "_|___      "
     ]
 ]
 
 WORDS = []
 
-def afficher_cochon_pendu(erreurs):
-    for ligne in COCHON_PENDU_STAGES[erreurs]:
+def afficher_pendu(erreurs):
+    for ligne in PENDU_STAGES[erreurs]:
         print(ligne)
     print()
 
@@ -97,17 +140,17 @@ def jouer():
     mot = get_random_word()
     lettres_trouvees = set()
     lettres_ratees = set()
-    essais = len(COCHON_PENDU_STAGES) - 1
+    essais = len(PENDU_STAGES) - 1
     erreurs = 0
 
-    print("Bienvenue au jeu du Cochon Pandu ! que le jeux commence !")
-    afficher_cochon_pendu(erreurs)
+    print("Bienvenue au jeu du Pendu ! Que le jeu commence !")
+    afficher_pendu(erreurs)
 
     while erreurs < essais:
         mot_affiche = ' '.join([l if l in lettres_trouvees else '_' for l in mot])
         print(f"Mot : {mot_affiche}")
         print(f"Lettres ratées : {', '.join(sorted(lettres_ratees))}")
-        afficher_cochon_pendu(erreurs)
+        afficher_pendu(erreurs)
         lettre = input("Proposez une lettre : ").lower()
         if not lettre.isalpha() or len(lettre) != 1:
             print("Veuillez entrer une seule lettre.")
@@ -118,14 +161,14 @@ def jouer():
         if lettre in mot:
             lettres_trouvees.add(lettre)
             if all(l in lettres_trouvees for l in mot):
-                print(f"Bravo ! Vous avez sauvé le cochon ! Le mot était : {mot}")
-                afficher_cochon_pendu(erreurs)
+                print(f"Bravo ! Vous avez trouvé le mot ! Le mot était : {mot}")
+                afficher_pendu(erreurs)
                 return
         else:
             lettres_ratees.add(lettre)
             erreurs += 1
-    print(f"Perdu ! Le cochon est pendu... Le mot était : {mot}")
-    afficher_cochon_pendu(erreurs)
+    print(f"Perdu ! Le bonhomme est pendu... Le mot était : {mot}")
+    afficher_pendu(erreurs)
 
 if __name__ == "__main__":
     jouer()
