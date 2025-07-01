@@ -1,5 +1,5 @@
-# pinguin-pendu
+# Hangman-Spiele
 
-simple hangman game, with API management for the riddle.
+Simple hangman game, with API management for the riddle.
 
 Requirements : pip3 install requests
